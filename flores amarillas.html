@@ -1,0 +1,151 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flores Amarillas 🌼</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to bottom, #fff8dc, #fff0a5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            background: #fffbea;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            max-width: 400px;
+            width: 90%;
+        }
+        h1 {
+            color: #e6b800;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #333;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        .flower {
+            font-size: 3rem;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        .floating-flowers {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .floating-flowers span {
+            position: absolute;
+            font-size: 2rem;
+            animation: fall 6s linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Botón de música */
+        .music-btn {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: #e6b800;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 500px) {
+            .container {
+                max-width: 95vw;
+                padding: 10px;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            .flower {
+                font-size: 2rem;
+            }
+            .floating-flowers span {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Música -->
+    <audio id="musica" loop>
+        <source src="Sound/Banana Fish AMV.mp3" type="audio/mpeg">
+        Tu navegador no soporta el audio.
+    </audio>
+
+    <!-- Flores flotantes -->
+    <div class="floating-flowers"></div>
+    <div class="container">
+        <img class="flower" src="Imagen/flor amarilla.png" alt="Flores Amarillas">
+        <h1>Flores Amarillas</h1>
+        <p>Para ti, con todo mi cariño Dayrita💛</p>
+        <p>Que cada día sea tan especial como estas flores 🌼✨</p>
+        <p>Pido que siempre estés rodeada de amor y felicidad 💖</p>
+        <p>De parte de papito Brayan 🥰🥹</p>
+    </div>
+
+    <!-- Botón de música -->
+    <button class="music-btn" id="btnMusica">🎶</button>
+
+    <script>
+        // Generar flores flotantes
+        const flowerContainer = document.querySelector('.floating-flowers');
+        for (let i = 0; i < 15; i++) {
+            const flower = document.createElement('span');
+            flower.textContent = '🌼';
+            flower.style.left = Math.random() * 100 + 'vw';
+            flower.style.animationDuration = (3 + Math.random() * 5) + 's';
+            flower.style.top = Math.random() * 20 + 'vh'; 
+            flowerContainer.appendChild(flower);
+        }
+
+        // Controlar música con el botón
+        const musica = document.getElementById("musica");
+        const btnMusica = document.getElementById("btnMusica");
+        let isPlaying = false;
+
+        btnMusica.addEventListener("click", () => {
+            if (isPlaying) {
+                musica.pause();
+                btnMusica.textContent = "🔇";
+            } else {
+                musica.play();
+                btnMusica.textContent = "🎶";
+            }
+            isPlaying = !isPlaying;
+        });
+    </script>
+</body>
+</html>
